@@ -1,18 +1,20 @@
 "use client";
 
 import { useState } from "react";
-import { Project } from "../data/projects";
-import { useGitHubStats } from "../hooks/useGitHubStats";
+import { ProjectWithStats } from "../data/projects";
 
 interface ProjectCardProps {
-  project: Project;
+  project: ProjectWithStats;
 }
 
 const MAX_DESCRIPTION_LENGTH = 150;
 
 export default function ProjectCard({ project }: ProjectCardProps) {
-  const { stats, loading } = useGitHubStats(project.link);
   const [isExpanded, setIsExpanded] = useState(false);
+  
+  // Utiliser les stats du projet depuis le contexte
+  const stats = project.githubStats;
+  const loading = project.isLoadingStats || false;
 
   const isLongDescription = project.description.length > MAX_DESCRIPTION_LENGTH;
   const displayedDescription = isExpanded || !isLongDescription
