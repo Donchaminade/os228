@@ -11,6 +11,15 @@ export interface Project {
     language: string;
 }
 
+export interface ProjectWithStats extends Project {
+    githubStats?: {
+        stars: number;
+        forks: number;
+        lastUpdated: string;
+    };
+    isLoadingStats?: boolean;
+}
+
 // Lire les données depuis le fichier JSON et les trier par ID décroissant (dernier ajouté en premier)
 export const projectsData: Project[] = (projectsJson as Project[]).sort((a, b) => b.id - a.id);
 
