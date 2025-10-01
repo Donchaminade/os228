@@ -167,6 +167,17 @@
         "category": "Mobile, Saas, OS",
         "author": "Donchaminade",
         "language": "Dart"
-    }
-
+    },
+  {
+    "id": 14,
+    "name": "Deployment notes",
+    "description": "This repository contains notes and guides on deploying applications across various environments, including VPS, databases (MongoDB, MySQL), and other services. It aims to simplify the production deployment process with clear and practical instructions.",
+    "link": "https://github.com/manuelebeh/deployment_notes",
+    "technologies": [
+      "Markdown"
+    ],
+    "category": "Tutorial, Hosting, Vps, Deployment, Notes",
+    "author": "manuelebeh",
+    "language": "Markdown"
+  }
 ]
