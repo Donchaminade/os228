@@ -130,9 +130,21 @@
   "category": "Web Development",
   "author": "DevBignuel",
   "language": "Java"
-  },
+
+},
+    {
+
+        "id": 11,
+        "name": "Dict Field Redacter - Caviardeur de donnée sensible",
+        "description": "DICT_FIELD_REDACTER est une petite bibliothèque Python pensée pour l’anonymisation rapide de données : elle parcourt récursivement vos dictionnaires / objets JSON et masque ou supprime (au choix) les champs sensibles que vous listez (mots de passe, emails, tokens, numéros de carte, etc.). Son fonctionnement est configurable (mode strict ou plus permissif), le placeholder de masquage est personnalisable, et elle vous aide à empêcher toute fuite accidentelle lors de logs, exports, partages ou envois vers des services externes. Léger, explicite et prêt à intégrer vos scripts ou API, DICT_FIELD_REDACTER devient votre garde‑fou minimaliste pour assainir les payloads avant stockage, debug ou observabilité.",
+        "link": "https://github.com/IlemLembo/dict_field_redacter",
+        "technologies": [ "Python" ],
+        "category": "DevSecOps, CI/CD, Security, Conidentiality, RGPD, PCI-DSS, Privacy",
+        "author": "LEMBO Ilem Nelson",
+        "language": "Python"
+    },
   {
-      "id": 11,
+      "id": 12,
       "name": "AlgoNumeriquesCodes",
       "description": "AlgoNumeriqueCodes est une collection de codes Python dédiés aux algorithmes numériques, notamment l'interpolation, la résolution d'équations et les moindres carrés.",
       "link": "https://github.com/arielDirema/AlgoNumeriquesCodes.git",
@@ -142,8 +154,10 @@
       "category": "Mathematics, Mathematical programming",
       "author": "arielDirema",
       "language": "Python"
-  }, {
-        "id": 12,
+
+  },
+ {
+        "id": 13,
         "name": "MailMass",
         "description": "MassMail is a cross-platform Flutter application that allows you to send emails to multiple recipients with ease. It provides a simple and intuitive interface for composing and sending emails in bulk.",
         "link": "https://github.com/Donchaminade/MailMass",
@@ -154,4 +168,5 @@
         "author": "Donchaminade",
         "language": "Dart"
     }
+
 ]
