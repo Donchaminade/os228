@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import Navbar from "../components/Navbar";
 import ProjectCard from "../components/ProjectCard";
 import ProjectFilters from "../components/ProjectFilters";
@@ -9,9 +10,16 @@ import { projectsData } from "../data/projects";
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState<"name" | "stars" | "id">("id");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(6);
+
+  // Reset currentPage to 1 when searchQuery or sortBy changes
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchQuery, sortBy]);
 
   // Filtrer et trier les projets
-  const filteredAndSortedProjects = useMemo(() => {
+  const { paginatedProjects, totalFilteredProjectsCount } = useMemo(() => {
     let filtered = projectsData;
 
     // Filtrage par nom
@@ -29,7 +37,7 @@ export default function Home() {
     }
 
     // Tri
-    return filtered.sort((a, b) => {
+    const sorted = filtered.sort((a, b) => {
       switch (sortBy) {
         case "name":
           return a.name.localeCompare(b.name, "fr");
@@ -41,7 +49,18 @@ export default function Home() {
           return b.id - a.id;
       }
     });
-  }, [searchQuery, sortBy]);
+
+    const totalFilteredProjectsCount = sorted.length;
+
+    // Pagination
+    const indexOfLastProject = currentPage * itemsPerPage;
+    const indexOfFirstProject = indexOfLastProject - itemsPerPage;
+    const paginatedProjects = sorted.slice(indexOfFirstProject, indexOfLastProject);
+
+    return { paginatedProjects, totalFilteredProjectsCount };
+  }, [searchQuery, sortBy, currentPage, itemsPerPage]);
+
+  const totalPages = Math.ceil(totalFilteredProjectsCount / itemsPerPage);
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -74,31 +93,82 @@ export default function Home() {
           />
 
           {/* Liste des projets */}
-          {filteredAndSortedProjects.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredAndSortedProjects.map((project) => (
-                <ProjectCard key={project.id} project={project} />
-              ))}
-            </div>
-          ) : (
-            <div className="text-center py-12">
-              <div className="text-6xl mb-4">🔍</div>
-              <h3 className="text-xl font-semibold text-foreground mb-2">
-                Aucun projet trouvé
-              </h3>
-              <p className="text-muted-foreground">
-                {searchQuery
-                  ? `Aucun projet ne correspond à "${searchQuery}"`
-                  : "Aucun projet disponible pour le moment"}
-              </p>
-              {searchQuery && (
+          <AnimatePresence mode="wait">
+            {paginatedProjects.length > 0 ? (
+              <motion.div
+                key={currentPage} // Key is important for AnimatePresence to detect changes
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.3 }}
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+              >
+                {paginatedProjects.map((project) => (
+                  <ProjectCard key={project.id} project={project} />
+                ))}
+              </motion.div>
+            ) : (
+              <motion.div
+                key="no-projects"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.3 }}
+                className="text-center py-12"
+              >
+                <div className="text-6xl mb-4">🔍</div>
+                <h3 className="text-xl font-semibold text-foreground mb-2">
+                  Aucun projet trouvé
+                </h3>
+                <p className="text-muted-foreground">
+                  {searchQuery
+                    ? `Aucun projet ne correspond à "${searchQuery}"`
+                    : "Aucun projet disponible pour le moment"}
+                </p>
+                {searchQuery && (
+                  <button
+                    onClick={() => setSearchQuery("")}
+                    className="mt-4 text-primary hover:text-primary/80 font-medium transition-colors"
+                  >
+                    Effacer la recherche
+                  </button>
+                )}
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* Pagination Controls */}
+          {totalPages > 1 && (
+            <div className="flex justify-center space-x-2 mt-8">
+              <button
+                onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+                disabled={currentPage === 1}
+                className="px-4 py-2 border rounded-lg bg-card text-card-foreground hover:bg-secondary disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                Précédent
+              </button>
+              {[...Array(totalPages)].map((_, index) => (
                 <button
-                  onClick={() => setSearchQuery("")}
-                  className="mt-4 text-primary hover:text-primary/80 font-medium transition-colors"
+                  key={index}
+                  onClick={() => setCurrentPage(index + 1)}
+                  className={`px-4 py-2 border rounded-lg ${
+                    currentPage === index + 1
+                      ? "bg-primary text-primary-foreground"
+                      : "bg-card text-card-foreground hover:bg-secondary"
+                  }`}
                 >
-                  Effacer la recherche
+                  {index + 1}
                 </button>
-              )}
+              ))}
+              <button
+                onClick={() =>
+                  setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+                }
+                disabled={currentPage === totalPages}
+                className="px-4 py-2 border rounded-lg bg-card text-card-foreground hover:bg-secondary disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                Suivant
+              </button>
             </div>
           )}
         </section>

@@ -14,6 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("http://localhost:3000"),
   title: "OS228 - OpenSource 228 | Projets Open Source du Togo",
   description:
     "Plateforme regroupant les projets open source du Togo dans le cadre du Hacktoberfest 2025. Découvrez, contribuez et participez à l'écosystème technologique togolais.",
