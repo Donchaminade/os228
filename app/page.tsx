@@ -6,6 +6,7 @@ import ProjectFilters from "../components/ProjectFilters";
 import Pagination from "../components/Pagination";
 import AnimatedProjectList from "../components/AnimatedProjectList";
 import ProjectCardSkeleton from "../components/ProjectCardSkeleton";
+import Contributors from "../components/Contributors";
 import { useProjects } from "../contexts/ProjectsContext";
 
 export default function Home() {
@@ -134,13 +135,19 @@ export default function Home() {
 			{/* Footer */}
 			<footer className="bg-card border-t border-border py-8 mt-16">
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-					<div className="text-center">
-						<p className="mb-4 text-card-foreground">
-							OS228 - OpenSource 228 | Hacktoberfest 2025
-						</p>
-						<p className="text-sm text-muted-foreground">
-							Fait avec ❤️ par la communauté Night Coding
-						</p>
+					<div className="text-center space-y-8">
+						{/* Contributors Section */}
+						<Contributors />
+
+						{/* Footer Info */}
+						<div>
+							<p className="mb-4 text-card-foreground">
+								OS228 - OpenSource 228 | Hacktoberfest 2025
+							</p>
+							<p className="text-sm text-muted-foreground">
+								Fait avec ❤️ par la communauté Night Coding
+							</p>
+						</div>
 					</div>
 				</div>
 			</footer>
