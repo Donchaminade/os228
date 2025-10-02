@@ -107,3 +107,12 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #15803d;
 }
+
+/* Styles pour Masonry layout */
+.masonry-column {
+  background-clip: padding-box;
+}
+
+.masonry-column > div {
+  margin-bottom: 2rem;
+}
