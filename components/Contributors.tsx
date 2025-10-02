@@ -18,8 +18,16 @@ export default function Contributors() {
   useEffect(() => {
     const fetchContributors = async () => {
       try {
+        const headers: HeadersInit = {};
+
+        // Ajouter le token GitHub si disponible (optionnel)
+        if (process.env.NEXT_PUBLIC_GITHUB_TOKEN) {
+          headers.Authorization = `token ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`;
+        }
+
         const response = await fetch(
-          "https://api.github.com/repos/ln-dev7/os228/contributors"
+          "https://api.github.com/repos/ln-dev7/os228/contributors",
+          { headers }
         );
 
         if (!response.ok) {
