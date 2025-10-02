@@ -22,7 +22,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
     : `${project.description.slice(0, MAX_DESCRIPTION_LENGTH)}...`;
 
   return (
-    <div className="bg-card rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-border">
+    <div className="bg-card rounded-lg p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-border">
       <div className="flex items-start  justify-between  mb-4">
         <h3 className="text-xl font-bold leading-6 text-card-foreground">
           {project.name}
