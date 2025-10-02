@@ -179,5 +179,17 @@
     "category": "Tutorial, Hosting, Vps, Deployment, Notes",
     "author": "manuelebeh",
     "language": "Markdown"
+  },
+  {
+    "id": 15,
+    "name": "ApiPhoneNumbers",
+    "description": "Cette API vous permet de récupérer des informations détaillées sur un numéro de téléphone",
+    "link": "https://github.com/EtudiantFabre/api_phone_numbers.git",
+    "technologies": [
+      "Python"
+    ],
+    "category": "Api, PhoneNumbers, Developer",
+    "author": "developpeurtaf",
+    "language": "Python"
   }
 ]
