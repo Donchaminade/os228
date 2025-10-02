@@ -7,6 +7,7 @@ import Pagination from "../components/Pagination";
 import AnimatedProjectList from "../components/AnimatedProjectList";
 import ProjectCardSkeleton from "../components/ProjectCardSkeleton";
 import { useProjects } from "../contexts/ProjectsContext";
+import ContributorList from "../components/ContributorList";
 
 export default function Home() {
 	const [initialLoading, setInitialLoading] = useState(true);
@@ -129,6 +130,8 @@ export default function Home() {
 						</a>
 					</div>
 				</section>
+
+        <ContributorList />
 			</main>
 
 			{/* Footer */}
