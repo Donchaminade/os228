@@ -91,7 +91,6 @@ export function ProjectsProvider({ children }: { children: React.ReactNode }) {
     initializeProjects();
   }, []);
 
-  // Filtrer les projets selon la recherche
   const filteredProjects = useMemo(() => {
     if (!searchQuery.trim()) return projects;
 
