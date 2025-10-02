@@ -2,6 +2,7 @@
 
 import ProjectCard from "./ProjectCard";
 import { ProjectWithStats } from "../data/projects";
+import Masonry from "react-masonry-css";
 
 interface AnimatedProjectListProps {
   paginatedProjects: ProjectWithStats[];
@@ -9,19 +10,33 @@ interface AnimatedProjectListProps {
   setSearchQuery: (query: string) => void;
 }
 
+const breakpointColumns = {
+  default: 3,
+  1024: 2,
+  768: 1
+};
+
 export default function AnimatedProjectList({
   paginatedProjects,
   searchQuery,
   setSearchQuery,
 }: AnimatedProjectListProps) {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-300">
+    <>
       {paginatedProjects.length > 0 ? (
-        paginatedProjects.map((project) => (
-          <ProjectCard key={project.id} project={project} />
-        ))
+        <Masonry
+          breakpointCols={breakpointColumns}
+          className="flex gap-8 transition-all duration-300"
+          columnClassName="masonry-column"
+        >
+          {paginatedProjects.map((project) => (
+            <div key={project.id} className="mb-8">
+              <ProjectCard project={project} />
+            </div>
+          ))}
+        </Masonry>
       ) : (
-        <div className="text-center py-12 col-span-full">
+        <div className="text-center py-12">
           <div className="text-6xl mb-4">🔍</div>
           <h3 className="text-xl font-semibold text-foreground mb-2">
             Aucun projet trouvé
@@ -41,6 +56,6 @@ export default function AnimatedProjectList({
           )}
         </div>
       )}
-    </div>
+    </>
   );
 }
