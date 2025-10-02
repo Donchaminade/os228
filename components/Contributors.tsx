@@ -45,7 +45,6 @@ export default function Contributors() {
       <div className="text-center">
         <div className="inline-flex items-center gap-2 text-muted-foreground">
           <div className="w-4 h-4 border-2 border-primary border-t-transparent rounded-full animate-spin" />
-          <span>Chargement des contributeurs...</span>
         </div>
       </div>
     );
@@ -79,9 +78,6 @@ export default function Contributors() {
               alt={contributor.login}
               className="w-12 h-12 rounded-full border-2 border-border hover:border-primary transition-all duration-200 group-hover:scale-110"
             />
-            <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-              {contributor.login}
-            </span>
           </a>
         ))}
       </div>
