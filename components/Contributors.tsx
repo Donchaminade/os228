@@ -62,7 +62,7 @@ export default function Contributors() {
   return (
     <div className="text-center">
       <h3 className="text-lg font-semibold text-card-foreground mb-4">
-        Contributeurs
+        Merci à nos contributeurs !
       </h3>
       <div className="flex flex-wrap justify-center gap-3">
         {contributors.map((contributor) => (
@@ -71,7 +71,7 @@ export default function Contributors() {
             href={contributor.html_url}
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative"
+            className="group relative hover:z-10"
             title={`${contributor.login} - ${contributor.contributions} contribution${contributor.contributions > 1 ? "s" : ""}`}
           >
             <img
