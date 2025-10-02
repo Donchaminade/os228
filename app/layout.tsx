@@ -4,6 +4,7 @@ import { ThemeProvider } from "../contexts/ThemeContext";
 import { ProjectsProvider } from "../contexts/ProjectsContext";
 import "./globals.css";
 import LayoutClientWrapper from "../components/LayoutClientWrapper";
+import BackToTopButton from "../components/BackToTopButton";
 
 const geistSans = Geist({
 	variable: "--font-geist-sans",
@@ -59,6 +60,7 @@ export default function RootLayout({
 				<ThemeProvider>
 					<ProjectsProvider>
 						<LayoutClientWrapper>{children}</LayoutClientWrapper>
+						<BackToTopButton />
 					</ProjectsProvider>
 				</ThemeProvider>
 			</body>
