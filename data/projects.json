@@ -200,5 +200,15 @@
     "category": "Opensource 101",
     "author": "Agnilonda Pakou",
     "language": "JavaScript"
+  },
+  {
+    "id": 21,
+    "name": "dev-recipes",
+    "description": "DevRecipes is a curated platform that provides simple, practical code examples across multiple programming languages. Our mission is to lower the barrier to entry for open source contributions by offering bite-sized, well-documented code snippets that developers can learn from and contribute to.",
+    "link": "https://github.com/apakou/dev-recipes",
+    "technologies": ["All"],
+    "category": "Opensource 101",
+    "author": "Agnilonda Pakou",
+    "language": "JavaScript"
   }
 ]
