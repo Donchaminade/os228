@@ -201,5 +201,16 @@
     "category": "Game",
     "author": "Docteur-Parfait",
     "language": "Flutter"
+  },
+  {
+    "id": 17,
+    "name": "Togo Tech Communities",
+    "description": "The Togo Tech Communities is a dynamic and inclusive project aimed at showcasing the vibrant and emerging tech communities in Togo. It seeks to provide a platform that celebrates the diverse range of talents, innovations, and collaborative efforts within the country's technology sector.",
+    "link": "https://github.com/shakiroye/tgTech-communities.git",
+    "technologies": ["VueJs", "TypeScript", "JavaScript"],
+    "category": "community",
+    "author": "Shakir OYEOSSI",
+    "language": "VueJs"
   }
+
 ]
