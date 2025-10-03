@@ -216,7 +216,7 @@
     "id": 18,
     "name": "Fast AI",
     "description": "Fast AI est un projet opensource qui permet de génerer des postes linkedin, X et Instagram. La genération de contenu est basée sur l'api de Gemini.",
-    "link": "https://github.com/shakiroye/tgTech-communities.git",
+    "link": "https://github.com/phoekerson/fast-ai",
     "technologies": ["NextJs", "TypeScript", "Clerk Auth", "Postgre sql","Gemini API", "Tailwind CSS"],
     "category": "Artificial Intelligence",
     "author": "Caleb MINTOUMBA",
