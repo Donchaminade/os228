@@ -309,5 +309,18 @@
     "category": "Community, Open Source, Learning",
     "author": "Ionfinisher",
     "language": "Java, Python, JavaScript"
+  },
+  {
+    "id": 24,
+    "name": "AfroBuilders",
+    "description": "Afrobuilder est une plateforme open source qui met en avant les projets innovants africains. Similaire à une boutique d'applications, elle répertorie les startups et les initiatives via de simples contributions JSON, facilitant ainsi l'exploration, la recherche et la promotion de l'innovation africaine dans tous les domaines.",
+    "link": "https://github.com/Hyver-organization/afrobuilders",
+    "technologies": [
+      "React",
+      "Autres..."
+    ],
+    "category": "Innovation",
+    "author": "Hyver-organization",
+    "language": "TypeScript, Javascript, CSS"
   }
 ]
