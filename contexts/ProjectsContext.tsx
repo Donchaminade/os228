@@ -14,29 +14,29 @@ interface ProjectsContextType {
   projects: ProjectWithStats[];
   searchQuery: string;
   sortBy: "name" | "stars" | "id";
-  currentPage: number;
-  filteredProjects: ProjectWithStats[];
-  paginatedProjects: ProjectWithStats[];
-  totalPages: number;
+  displayedProjects: ProjectWithStats[];
   totalProjects: number;
   isLoading: boolean;
+  isLoadingMore: boolean;
+  hasMore: boolean;
   setSearchQuery: (query: string) => void;
   setSortBy: (sort: "name" | "stars" | "id") => void;
-  setCurrentPage: (page: number) => void;
+  loadMoreProjects: () => void;
 }
 
 const ProjectsContext = createContext<ProjectsContextType | undefined>(
   undefined
 );
 
-const ITEMS_PER_PAGE = 12;
+const ITEMS_PER_LOAD = 12;
 
 export function ProjectsProvider({ children }: { children: React.ReactNode }) {
   const [projects, setProjects] = useState<ProjectWithStats[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [sortBy, setSortBy] = useState<"name" | "stars" | "id">("id");
-  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [displayedCount, setDisplayedCount] = useState<number>(ITEMS_PER_LOAD);
   const [isLoading, setIsLoading] = useState(true);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
 
   useEffect(() => {
     const initializeProjects = async () => {
@@ -135,37 +135,47 @@ export function ProjectsProvider({ children }: { children: React.ReactNode }) {
   }, [filteredProjects, sortBy]);
 
   const totalProjects = sortedProjects.length;
-  const totalPages = Math.ceil(totalProjects / ITEMS_PER_PAGE);
+  const hasMore = displayedCount < totalProjects;
 
-  const paginatedProjects = useMemo(() => {
-    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-    const endIndex = startIndex + ITEMS_PER_PAGE;
-    return sortedProjects.slice(startIndex, endIndex);
-  }, [sortedProjects, currentPage]);
+  const displayedProjects = useMemo(() => {
+    return sortedProjects.slice(0, displayedCount);
+  }, [sortedProjects, displayedCount]);
+
+  const loadMoreProjects = () => {
+    if (hasMore && !isLoadingMore) {
+      setIsLoadingMore(true);
+      // Simuler un délai pour l'effet de chargement
+      setTimeout(() => {
+        setDisplayedCount((prev) =>
+          Math.min(prev + ITEMS_PER_LOAD, totalProjects)
+        );
+        setIsLoadingMore(false);
+      }, 500);
+    }
+  };
 
   const handleSetSearchQuery = (query: string) => {
     setSearchQuery(query);
-    setCurrentPage(1);
+    setDisplayedCount(ITEMS_PER_LOAD);
   };
 
   const handleSetSortBy = (sort: "name" | "stars" | "id") => {
     setSortBy(sort);
-    setCurrentPage(1);
+    setDisplayedCount(ITEMS_PER_LOAD);
   };
 
   const contextValue: ProjectsContextType = {
     projects,
     searchQuery,
     sortBy,
-    currentPage,
-    filteredProjects: sortedProjects,
-    paginatedProjects,
-    totalPages,
+    displayedProjects,
     totalProjects,
     isLoading,
+    isLoadingMore,
+    hasMore,
     setSearchQuery: handleSetSearchQuery,
     setSortBy: handleSetSortBy,
-    setCurrentPage,
+    loadMoreProjects,
   };
 
   return (
