@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 import AnimatedProjectList from "../components/AnimatedProjectList";
 import Contributors from "../components/Contributors";
+import InfiniteScroll from "../components/InfiniteScroll";
 import Navbar from "../components/Navbar";
-import Pagination from "../components/Pagination";
 import ProjectCardSkeleton from "../components/ProjectCardSkeleton";
 import ProjectFilters from "../components/ProjectFilters";
 import { useProjects } from "../contexts/ProjectsContext";
@@ -14,13 +14,14 @@ export default function Home() {
   const {
     searchQuery,
     sortBy,
-    currentPage,
-    paginatedProjects,
-    totalPages,
+    displayedProjects,
+    totalProjects,
     isLoading,
+    isLoadingMore,
+    hasMore,
     setSearchQuery,
     setSortBy,
-    setCurrentPage,
+    loadMoreProjects,
   } = useProjects();
 
   // Simulate initial loading screen
@@ -73,19 +74,17 @@ export default function Home() {
               ))}
             </div>
           ) : (
-            <AnimatedProjectList
-              paginatedProjects={paginatedProjects}
-              searchQuery={searchQuery}
-              setSearchQuery={setSearchQuery}
-            />
-          )}
-
-          {totalPages > 1 && !initialLoading && !isLoading && (
-            <Pagination
-              currentPage={currentPage}
-              totalPages={totalPages}
-              onPageChange={setCurrentPage}
-            />
+            <InfiniteScroll
+              onLoadMore={loadMoreProjects}
+              hasMore={hasMore}
+              isLoading={isLoadingMore}
+            >
+              <AnimatedProjectList
+                paginatedProjects={displayedProjects}
+                searchQuery={searchQuery}
+                setSearchQuery={setSearchQuery}
+              />
+            </InfiniteScroll>
           )}
         </section>
 
