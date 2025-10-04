@@ -294,5 +294,20 @@
     "category": "Algorithmes numériques",
     "author": "Ephraim KPONOU",
     "language": "Java"
+  },
+  {
+    "id": 23,
+    "name": "30 Days Of Open Source",
+    "description": "30 Days Of Open Source est un projet propulsé par la communauté Oozons afin de rendre l'Open Source plus accessible, plus fun en le gamifiant.",
+    "link": "https://github.com/Ionfinisher/30-days-of-open-source",
+    "technologies": [
+      "Java",
+      "Python",
+      "JavaScript",
+      "React"
+    ],
+    "category": "Community, Open Source, Learning",
+    "author": "Ionfinisher",
+    "language": "Java, Python, JavaScript"
   }
 ]
