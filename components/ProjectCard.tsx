@@ -11,23 +11,30 @@ const MAX_DESCRIPTION_LENGTH = 150;
 
 export default function ProjectCard({ project }: ProjectCardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
-  
-  // Utiliser les stats du projet depuis le contexte
+
   const stats = project.githubStats;
   const loading = project.isLoadingStats || false;
 
   const isLongDescription = project.description.length > MAX_DESCRIPTION_LENGTH;
-  const displayedDescription = isExpanded || !isLongDescription
-    ? project.description
-    : `${project.description.slice(0, MAX_DESCRIPTION_LENGTH)}...`;
+  const displayedDescription =
+    isExpanded || !isLongDescription
+      ? project.description
+      : `${project.description.slice(0, MAX_DESCRIPTION_LENGTH)}...`;
+
+  const handleCardClick = () => {
+    window.open(project.link, "_blank");
+  };
 
   return (
-    <div className="bg-card rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-border">
-      <div className="flex items-start  justify-between  mb-4">
+    <div
+      className="bg-card rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-border cursor-pointer"
+      onClick={handleCardClick}
+    >
+      <div className="flex items-start justify-between mb-4">
         <h3 className="text-xl font-bold leading-6 text-card-foreground">
           {project.name}
         </h3>
-        <div className="flex h-6  items-center gap-3 text-muted-foreground text-sm">
+        <div className="flex h-6 items-center gap-3 text-muted-foreground text-sm">
           {loading ? (
             <div className="flex items-center gap-2">
               <div className="w-4 h-4 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
@@ -39,8 +46,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                 <span>⭐</span>
                 <span className="font-medium">{stats.stars}</span>
               </div>
-              <div className="flex  items-center gap-1">
-                {/* Icône fork GitHub (revu) */}
+              <div className="flex items-center gap-1">
                 <svg
                   className="w-4 h-4"
                   fill="currentColor"
@@ -53,20 +59,22 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               </div>
             </>
           ) : (
-            <div className="flex  items-center gap-1 text-muted-foreground">
+            <div className="flex items-center gap-1 text-muted-foreground">
               <span className="text-xs">Stats non disponibles</span>
             </div>
           )}
         </div>
       </div>
-
       <div className="mb-4">
         <p className="text-muted-foreground leading-relaxed">
           {displayedDescription}
         </p>
         {isLongDescription && (
           <button
-            onClick={() => setIsExpanded(!isExpanded)}
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsExpanded(!isExpanded);
+            }}
             className="text-primary hover:text-primary/80 text-sm font-medium mt-2 transition-colors duration-200 flex items-center gap-1"
           >
             {isExpanded ? (
@@ -107,7 +115,6 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           </button>
         )}
       </div>
-
       <div className="flex flex-wrap gap-2 mb-4">
         {project.technologies.map((tech, index) => (
           <span
@@ -118,7 +125,6 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           </span>
         ))}
       </div>
-
       <div className="flex justify-between items-center text-sm text-muted-foreground">
         <div>
           <span className="font-medium">Auteur:</span> {project.author}
@@ -127,12 +133,12 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           <span className="font-medium">Langage:</span> {project.language}
         </div>
       </div>
-
       <div className="mt-4 pt-4 border-t border-border">
         <a
           href={project.link}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={(e) => e.stopPropagation()}
           className="inline-flex items-center text-primary hover:text-primary/80 font-medium transition-colors duration-200"
         >
           Voir sur GitHub
