@@ -200,5 +200,16 @@
     "category": "Opensource 101",
     "author": "Agnilonda Pakou",
     "language": "JavaScript"
-  }
+  },
+  {
+  "id": 21,
+  "name": "Interpolation JavaFX",
+  "description": "Application JavaFX permettant de visualiser et comparer les méthodes d’interpolation polynomiale (Lagrange, Newton, Moindres carrés).",
+  "link": "https://github.com/King-Ephraim/Interpolations.git",
+  "technologies": ["Java", "JavaFX"],
+  "category": "Algorithmes numériques",
+  "author": "Ephraim KPONOU",
+  "language": "Java"
+}
+
 ]
