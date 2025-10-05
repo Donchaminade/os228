@@ -335,5 +335,18 @@
     "category": "Web Development",
     "author": "Docteur-Parfait",
     "language": "TypeScript, Javascript"
+  },
+   {
+    "id": 26,
+    "name": "CsvToDb",
+    "description": "Convertit des fichiers CSV en instructions de base de données sql.",
+    "link": "https://github.com/devOnlyPurple/csv_to_db.git",
+    "technologies": [
+      "Node Js",
+      "Express JS"
+    ],
+    "category": "Api Development",
+    "author": "Only purple",
+    "language": "Javascript"
   }
 ]
