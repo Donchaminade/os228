@@ -322,5 +322,18 @@
     "category": "Innovation",
     "author": "Hyver-organization",
     "language": "TypeScript, Javascript, CSS"
+  },
+  {
+    "id": 25,
+    "name": "DocBase",
+    "description": "Base de données centralisée pour organiser vos documentations techniques avec React et Vite.",
+    "link": "https://github.com/Docteur-Parfait/docBase",
+    "technologies": [
+      "React",
+      "Tailwind CSS"
+    ],
+    "category": "Web Development",
+    "author": "Docteur-Parfait",
+    "language": "TypeScript, Javascript"
   }
 ]
