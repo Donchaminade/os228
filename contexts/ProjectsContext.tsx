@@ -14,6 +14,7 @@ interface ProjectsContextType {
   projects: ProjectWithStats[];
   searchQuery: string;
   sortBy: "name" | "stars" | "id";
+  selectedLanguages: string[];
   displayedProjects: ProjectWithStats[];
   totalProjects: number;
   isLoading: boolean;
@@ -21,6 +22,7 @@ interface ProjectsContextType {
   hasMore: boolean;
   setSearchQuery: (query: string) => void;
   setSortBy: (sort: "name" | "stars" | "id") => void;
+  setSelectedLanguages: (languages: string[]) => void;
   loadMoreProjects: () => void;
 }
 
@@ -34,6 +36,7 @@ export function ProjectsProvider({ children }: { children: React.ReactNode }) {
   const [projects, setProjects] = useState<ProjectWithStats[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [sortBy, setSortBy] = useState<"name" | "stars" | "id">("id");
+  const [selectedLanguages, setSelectedLanguages] = useState<string[]>([]);
   const [displayedCount, setDisplayedCount] = useState<number>(ITEMS_PER_LOAD);
   const [isLoading, setIsLoading] = useState(true);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
@@ -92,19 +95,33 @@ export function ProjectsProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const filteredProjects = useMemo(() => {
-    if (!searchQuery.trim()) return projects;
+    let filtered = projects;
 
-    return projects.filter(
-      (project) =>
-        project.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        project.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        project.technologies.some((tech) =>
-          tech.toLowerCase().includes(searchQuery.toLowerCase())
-        ) ||
-        project.author.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        project.category.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-  }, [projects, searchQuery]);
+    // Filtrage par recherche textuelle
+    if (searchQuery.trim()) {
+      filtered = filtered.filter(
+        (project) =>
+          project.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          project.description
+            .toLowerCase()
+            .includes(searchQuery.toLowerCase()) ||
+          project.technologies.some((tech) =>
+            tech.toLowerCase().includes(searchQuery.toLowerCase())
+          ) ||
+          project.author.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          project.category.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+
+    // Filtrage par langue
+    if (selectedLanguages.length > 0) {
+      filtered = filtered.filter((project) =>
+        selectedLanguages.includes(project.language)
+      );
+    }
+
+    return filtered;
+  }, [projects, searchQuery, selectedLanguages]);
 
   const sortedProjects = useMemo(() => {
     const sorted = [...filteredProjects];
@@ -164,10 +181,16 @@ export function ProjectsProvider({ children }: { children: React.ReactNode }) {
     setDisplayedCount(ITEMS_PER_LOAD);
   };
 
+  const handleSetSelectedLanguages = (languages: string[]) => {
+    setSelectedLanguages(languages);
+    setDisplayedCount(ITEMS_PER_LOAD);
+  };
+
   const contextValue: ProjectsContextType = {
     projects,
     searchQuery,
     sortBy,
+    selectedLanguages,
     displayedProjects,
     totalProjects,
     isLoading,
@@ -175,6 +198,7 @@ export function ProjectsProvider({ children }: { children: React.ReactNode }) {
     hasMore,
     setSearchQuery: handleSetSearchQuery,
     setSortBy: handleSetSortBy,
+    setSelectedLanguages: handleSetSelectedLanguages,
     loadMoreProjects,
   };
 

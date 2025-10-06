@@ -19,8 +19,10 @@ export default function Home() {
     isLoading,
     isLoadingMore,
     hasMore,
+    selectedLanguages,
     setSearchQuery,
     setSortBy,
+    setSelectedLanguages,
     loadMoreProjects,
   } = useProjects();
 
@@ -61,8 +63,10 @@ export default function Home() {
           <ProjectFilters
             onSearch={setSearchQuery}
             onSort={setSortBy}
+            onLanguageChange={setSelectedLanguages}
             searchQuery={searchQuery}
             sortBy={sortBy}
+            selectedLanguages={selectedLanguages}
             isLoadingStats={isLoading}
           />
 
