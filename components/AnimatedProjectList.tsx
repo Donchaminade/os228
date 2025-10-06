@@ -3,6 +3,7 @@
 import ProjectCard from "./ProjectCard";
 import { ProjectWithStats } from "../data/projects";
 import Masonry from "react-masonry-css";
+import { Button } from "./ui/button";
 
 interface AnimatedProjectListProps {
   paginatedProjects: ProjectWithStats[];
@@ -47,12 +48,13 @@ export default function AnimatedProjectList({
               : "Aucun projet disponible pour le moment"}
           </p>
           {searchQuery && (
-            <button
+            <Button
+             variant="ghost"
               onClick={() => setSearchQuery("")}
               className="mt-4 text-primary hover:text-primary/80 font-medium transition-colors"
             >
               Effacer la recherche
-            </button>
+            </Button>
           )}
         </div>
       )}

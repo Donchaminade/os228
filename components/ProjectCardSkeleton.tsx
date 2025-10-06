@@ -1,35 +1,39 @@
 "use client";
 
+import { Card, CardHeader, CardContent, CardFooter, CardTitle } from "./ui/card";
+import { Skeleton } from "./ui/skeleton";
+import { Button } from "./ui/button";
+
 export default function ProjectCardSkeleton() {
   return (
-    <div className="bg-card rounded-lg p-6 shadow-lg border border-border animate-pulse">
-      <div className="flex justify-between items-start mb-4">
-        <div className="h-6 bg-muted rounded w-3/4"></div> {/* Placeholder for project name */}
-        <div className="flex items-center gap-3">
-          <div className="h-4 bg-muted rounded w-12"></div> {/* Placeholder for stars */}
-          <div className="h-4 bg-muted rounded w-12"></div> {/* Placeholder for forks */}
+    <Card className="animate-pulse cursor-pointer">
+      <CardHeader>
+        <div className="flex justify-between items-center">
+          <CardTitle>
+            <Skeleton className="h-5 w-32" />
+          </CardTitle>
+          <div className="flex gap-2">
+            <Skeleton className="h-4 w-8" />
+            <Skeleton className="h-4 w-8" />
+          </div>
         </div>
-      </div>
+      </CardHeader>
 
-      <div className="mb-4">
-        <div className="h-4 bg-muted rounded w-full mb-2"></div> {/* Placeholder for description line 1 */}
-        <div className="h-4 bg-muted rounded w-5/6"></div> {/* Placeholder for description line 2 */}
-      </div>
+      <CardContent className="flex flex-col gap-2">
+        <Skeleton className="h-4 w-full" />
+        <Skeleton className="h-4 w-full" />
+        <Skeleton className="h-4 w-3/4" />
+        <div className="flex gap-2 mt-2">
+          <Skeleton className="h-6 w-12 rounded" />
+          <Skeleton className="h-6 w-16 rounded" />
+        </div>
+      </CardContent>
 
-      <div className="flex flex-wrap gap-2 mb-4">
-        <div className="h-6 bg-muted rounded w-20"></div> {/* Placeholder for tech tag 1 */}
-        <div className="h-6 bg-muted rounded w-24"></div> {/* Placeholder for tech tag 2 */}
-        <div className="h-6 bg-muted rounded w-16"></div> {/* Placeholder for tech tag 3 */}
-      </div>
-
-      <div className="flex justify-between items-center text-sm text-muted-foreground">
-        <div className="h-4 bg-muted rounded w-1/3"></div> {/* Placeholder for author */}
-        <div className="h-4 bg-muted rounded w-1/4"></div> {/* Placeholder for language */}
-      </div>
-
-      <div className="mt-4 pt-4 border-t border-border">
-        <div className="h-4 bg-muted rounded w-1/2"></div> {/* Placeholder for 'View on GitHub' link */}
-      </div>
-    </div>
+      <CardFooter>
+        <Button variant="ghost" disabled>
+          <Skeleton className="h-4 w-20" />
+        </Button>
+      </CardFooter>
+    </Card>
   );
 }
