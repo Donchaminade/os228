@@ -348,5 +348,18 @@
     "category": "Api Development",
     "author": "Only purple",
     "language": "Javascript"
-  }
+  },
+   {
+  "id": 27,
+  "name": "GitInsight",
+  "description": "Microservice permettant d’afficher les statistiques d’un dépôt GitHub en temps réel.",
+  "link": "https://github.com/tresor228/GitInsight",
+  "technologies": [
+    "Golang"
+  ],
+  "category": "API Development",
+  "author": "Tresor ALADE",
+  "language": "Golang"
+}
+
 ]
