@@ -1,20 +1,41 @@
 "use client";
 
+import { useMemo } from "react";
+import { useProjects } from "../contexts/ProjectsContext";
+
 interface ProjectFiltersProps {
-	onSearch: (query: string) => void;
-	onSort: (sortBy: "name" | "stars" | "id") => void;
-	searchQuery: string;
-	sortBy: "name" | "stars" | "id";
-	isLoadingStats?: boolean;
+  onSearch: (query: string) => void;
+  onSort: (sortBy: "name" | "stars" | "id") => void;
+  onLanguageChange: (languages: string[]) => void;
+  searchQuery: string;
+  sortBy: "name" | "stars" | "id";
+  selectedLanguages: string[];
+  isLoadingStats?: boolean;
 }
 
 export default function ProjectFilters({
-	onSearch,
-	onSort,
-	searchQuery,
-	sortBy,
-	isLoadingStats = false,
+  onSearch,
+  onSort,
+  onLanguageChange,
+  searchQuery,
+  sortBy,
+  selectedLanguages,
+  isLoadingStats = false,
 }: ProjectFiltersProps) {
+  const { projects } = useProjects();
+
+  const allLanguages = useMemo(() => {
+    const languages = new Set<string>();
+    projects.forEach((p) => languages.add(p.language));
+    return Array.from(languages).sort();
+  }, [projects]);
+
+  const handleLanguageClick = (language: string) => {
+    const newSelection = selectedLanguages.includes(language)
+      ? selectedLanguages.filter((l) => l !== language)
+      : [...selectedLanguages, language];
+    onLanguageChange(newSelection);
+  };
 	return (
 		<div className="mb-8">
 			{/* Barre de recherche et tri sur la même ligne sur desktop */}
@@ -78,6 +99,32 @@ export default function ProjectFilters({
 					)}
 				</div>
 			</div>
+
+			{/* Filtres par langage */}
+      <div className="mt-6">
+        <div className="flex items-center gap-2 flex-wrap">
+          <span className="text-sm font-medium text-foreground mr-2">
+            Filtrer par langage :
+          </span>
+          {allLanguages.map((language) => {
+            const isSelected = selectedLanguages.includes(language);
+            return (
+              <button
+                key={language}
+                onClick={() => handleLanguageClick(language)}
+                className={`px-3 py-1.5 text-sm rounded-full transition-colors duration-200 border ${isSelected
+                    ? "bg-primary border-primary text-primary-foreground"
+                    : "bg-card hover:bg-secondary border-border text-foreground"
+                  }`}>
+                {language}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+
+
 		</div>
 	);
 }
