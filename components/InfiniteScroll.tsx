@@ -1,5 +1,6 @@
 "use client";
 
+import {Loader} from "lucide-react";
 import { useCallback, useEffect, useRef } from "react";
 
 interface InfiniteScrollProps {
@@ -50,7 +51,7 @@ export default function InfiniteScroll({
       <div ref={loadingRef} className="flex justify-center py-8">
         {isLoading ? (
           <div className="flex items-center gap-2 text-muted-foreground">
-            <div className="w-4 h-4 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
+            <Loader className="w-4 h-4 animate-spin text-primary"/>
             <span>Chargement de plus de projets...</span>
           </div>
         ) : hasMore ? (
