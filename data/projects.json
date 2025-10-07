@@ -336,7 +336,7 @@
     "author": "Docteur-Parfait",
     "language": "TypeScript, Javascript"
   },
-   {
+  {
     "id": 26,
     "name": "CsvToDb",
     "description": "Convertit des fichiers CSV en instructions de base de données sql.",
@@ -349,17 +349,30 @@
     "author": "Only purple",
     "language": "Javascript"
   },
-   {
-  "id": 27,
-  "name": "GitInsight",
-  "description": "Microservice permettant d’afficher les statistiques d’un dépôt GitHub en temps réel.",
-  "link": "https://github.com/tresor228/GitInsight",
-  "technologies": [
-    "Golang"
-  ],
-  "category": "API Development",
-  "author": "Tresor ALADE",
-  "language": "Golang"
-}
-
+  {
+    "id": 27,
+    "name": "GitInsight",
+    "description": "Microservice permettant d’afficher les statistiques d’un dépôt GitHub en temps réel.",
+    "link": "https://github.com/tresor228/GitInsight",
+    "technologies": [
+      "Golang"
+    ],
+    "category": "API Development",
+    "author": "Tresor ALADE",
+    "language": "Golang"
+  },
+  {
+    "id": 28,
+    "name": "MdParser",
+    "description": "Parseur et compilateur de markdown en HTML.",
+    "link": "https://github.com/Frusadev/mdparser",
+    "technologies": [
+      "Typescript",
+      "Bun"
+    ],
+    "category": "Library",
+    "author": "Frusadev",
+    "language": "Typescript"
+  }
 ]
+
