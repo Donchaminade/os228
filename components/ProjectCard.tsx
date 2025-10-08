@@ -73,9 +73,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         </div>
       </CardHeader>
       <CardContent className="'flex-1">
-        <p className="text-muted-foreground">
-          {displayedDescription}
-        </p>
+        <p className="text-muted-foreground">{displayedDescription}</p>
         {isLongDescription && (
           <button
             onClick={(e) => {
@@ -84,7 +82,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             }}
             className="text-primary cursor-pointer hover:text-primary/80 text-sm font-medium mt-2 transition-colors duration-200 flex items-center gap-1"
           >
-            Voir plus
+            {isExpanded ? "Voir moins" : "Voir plus"}
           </button>
         )}
         <div className="flex flex-wrap gap-2 m-4">
