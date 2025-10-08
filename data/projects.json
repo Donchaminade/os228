@@ -374,5 +374,19 @@
     "author": "Frusadev",
     "language": "Typescript"
   }
+  {
+  "id": 29,
+  "name": "HordricWeather",
+  "description": "Application météo moderne et élégante développée avec Flutter. HordricWeather vous accompagne au quotidien avec des prévisions précises, des alertes intelligentes, la qualité de l'air en temps réel et un widget personnalisable. Entièrement gratuite, sans publicité et respectueuse de votre vie privée. Fonctionnalités : prévisions GPS en temps réel, alertes météo extrêmes avec système anti-spam, qualité de l'air (AQI) avec conseils santé, widget Android élégant, conseils vestimentaires personnalisés, gestion multi-villes, interface moderne avec animations fluides, stockage 100% local, conforme RGPD.",
+  "link": "https://github.com/HordRicJr/HordricWeather",
+  "technologies": [
+    "Flutter",
+    "Dart",
+    "OpenWeather API"
+  ],
+  "category": "Mobile Application",
+  "author": "HordRicJr",
+  "language": "Dart"
+}
 ]
 
