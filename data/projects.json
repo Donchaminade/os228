@@ -397,6 +397,23 @@
   "category": "Flutter Development",
   "author": "novenopatch",
   "language": "Dart"
+},
+  {
+  "id": 31,
+  "name": "HordVoice",
+  "description": "Assistant vocal intelligent développé avec Flutter et Azure AI Services. HordVoice offre reconnaissance vocale avancée, conversation IA, traduction multilingue et contrôle inter-applications. Open source, sécurisé et respectueux de la vie privée. Fonctionnalités : reconnaissance vocale temps réel, IA conversationnelle Azure OpenAI, traduction instantanée, détection mots-clés réveil, analyse émotionnelle, intégration calendrier/météo, interface Material Design 3, stockage local sécurisé,",
+  "link": "https://github.com/HordRicJr/HordVoice",
+  "technologies": [
+    "Flutter",
+    "Dart",
+    "Azure AI Services",
+    "Azure Speech Recognition",
+    "Azure OpenAI",
+    "Supabase"
+  ],
+  "category": "Mobile Application",
+  "author": "HordRicJr",
+  "language": "Dart"
 }
 
 ]
