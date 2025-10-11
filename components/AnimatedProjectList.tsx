@@ -35,12 +35,12 @@ export default function AnimatedProjectList({
             <motion.div
               key={project.id}
               className="mb-8"
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
+              viewport={{ once: true, margin: "-100px" }}
               transition={{
-                duration: 0.5,
-                delay: index * 0.1,
+                duration: 0.4,
+                delay: Math.min(index, 6) * 0.03,
                 ease: [0.25, 0.46, 0.45, 0.94]
               }}
             >
