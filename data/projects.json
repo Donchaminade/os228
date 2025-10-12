@@ -399,22 +399,32 @@
   "language": "Dart"
 },
   {
-  "id": 31,
-  "name": "HordVoice",
-  "description": "Assistant vocal intelligent développé avec Flutter et Azure AI Services. HordVoice offre reconnaissance vocale avancée, conversation IA, traduction multilingue et contrôle inter-applications. Open source, sécurisé et respectueux de la vie privée. Fonctionnalités : reconnaissance vocale temps réel, IA conversationnelle Azure OpenAI, traduction instantanée, détection mots-clés réveil, analyse émotionnelle, intégration calendrier/météo, interface Material Design 3, stockage local sécurisé,",
-  "link": "https://github.com/HordRicJr/HordVoice",
+    "id": 31,
+    "name": "HordVoice",
+    "description": "Assistant vocal intelligent développé avec Flutter et Azure AI Services. HordVoice offre reconnaissance vocale avancée, conversation IA, traduction multilingue et contrôle inter-applications. Open source, sécurisé et respectueux de la vie privée.",
+    "link": "https://github.com/HordRicJr/HordVoice",
+    "technologies": ["Flutter", "Dart", "Azure AI Services", "Azure Speech Recognition", "Azure OpenAI", "Supabase"],
+    "category": "Mobile Application",
+    "author": "HordRicJr",
+    "language": "Dart"
+  },
+  {
+  "id": 32,
+  "name": "HordMaps",
+  "description": "Application de navigation moderne développée avec Flutter et Azure Maps. HordMaps offre navigation GPS temps réel, cartes hors ligne, guidage vocal intelligent et calcul d'itinéraires optimisés. Découvrez les lieux proches et points d'intérêt autour de vous. Open source, performante et accessible. Fonctionnalités : navigation turn-by-turn, intégration Azure Maps, recherche POI avancée, lieux proches, mode hors ligne, service arrière-plan, thème adaptatif Material Design, cache intelligent, géolocalisation haute précision, partage de position, favoris organisés, mesures interactives.",
+  "link": "https://github.com/HordRicJr/HordMaps",
   "technologies": [
     "Flutter",
     "Dart",
-    "Azure AI Services",
-    "Azure Speech Recognition",
-    "Azure OpenAI",
-    "Supabase"
+    "Azure Maps",
+    "Azure Maps Routing API",
+    "Azure Maps Search API",
+    "Material Design 3"
   ],
   "category": "Mobile Application",
   "author": "HordRicJr",
   "language": "Dart"
-}
+ }
 
 ]
 
