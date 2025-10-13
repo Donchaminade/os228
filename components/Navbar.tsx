@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useTheme } from "../contexts/ThemeContext";
 import { Button } from "./ui/button";
 import { Switch } from "./ui/switch";

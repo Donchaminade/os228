@@ -12,8 +12,8 @@ export interface GitHubContribution {
 }
 
 export interface UserContributions {
-  username: string;
-  avatar_url: string;
+  username?: string;
+  avatar_url?: string;
   total_contributions: number;
   repositories: GitHubContribution[];
 }

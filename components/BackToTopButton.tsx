@@ -1,7 +1,6 @@
 "use client";
-import { ArrowUp, CircleFadingArrowUp } from "lucide-react";
+import { CircleFadingArrowUp } from "lucide-react";
 import { Button } from "./ui/button";
-
 import { useEffect, useState } from "react";
 
 const BackToTopButton = () => {
@@ -32,16 +31,22 @@ const BackToTopButton = () => {
   }, []);
 
   return (
-    <div className={`fixed bottom-4 right-4 z-50 transition-opacity duration-300 ${isVisible ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
-        <Button
-          variant="default"
-          size="icon"
-          onClick={scrollToTop}
-          className="bg-green-500 hover:bg-yellow-500 text-white font-bold py-2 px-4 rounded-full shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-all duration-300 ease-in-out hover:scale-110"
-          aria-label="Scroll to top"
-        >
-          <CircleFadingArrowUp />
-        </Button>
+    <div
+      className={`fixed bottom-4 right-4 z-50 transition-opacity duration-300 ${
+        isVisible
+          ? "opacity-100 pointer-events-auto"
+          : "opacity-0 pointer-events-none"
+      }`}
+    >
+      <Button
+        variant="default"
+        size="icon"
+        onClick={scrollToTop}
+        className="bg-green-500 hover:bg-yellow-500 text-white font-bold py-2 px-4 rounded-full shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-all duration-300 ease-in-out hover:scale-110"
+        aria-label="Scroll to top"
+      >
+        <CircleFadingArrowUp />
+      </Button>
     </div>
   );
 };

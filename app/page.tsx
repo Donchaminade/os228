@@ -16,6 +16,13 @@ import { motion } from "framer-motion";
 import { UserContributions } from "@/types/contributions";
 import { Loader } from "lucide-react";
 
+interface SessionUser {
+	username?: string;
+	avatar?: string;
+	name?: string | null;
+	email?: string | null;
+}
+
 export default function Home() {
 	const [initialLoading, setInitialLoading] = useState(true);
 	const { data: session, status } = useSession();
@@ -26,7 +33,6 @@ export default function Home() {
 		searchQuery,
 		sortBy,
 		displayedProjects,
-		totalProjects,
 		isLoading,
 		isLoadingMore,
 		hasMore,
@@ -80,8 +86,8 @@ export default function Home() {
 							</div>
 						) : (
 							<UserProfile
-								username={(session.user as any)?.username || ""}
-								avatar_url={(session.user as any)?.avatar || ""}
+								username={(session.user as SessionUser)?.username || ""}
+								avatar_url={(session.user as SessionUser)?.avatar || ""}
 								name={session.user?.name}
 								email={session.user?.email}
 								os228Contributions={

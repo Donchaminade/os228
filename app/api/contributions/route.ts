@@ -2,6 +2,11 @@ import { auth } from "@/lib/auth";
 import { GitHubEvent, GitHubRepository, UserContributions, GitHubContribution } from "@/types/contributions";
 import { NextResponse } from "next/server";
 
+interface SessionUser {
+  username?: string;
+  avatar?: string;
+}
+
 export async function GET() {
   try {
     const session = await auth();
@@ -13,7 +18,7 @@ export async function GET() {
       );
     }
 
-    const username = (session.user as any).username;
+    const username = (session.user as SessionUser).username;
     const accessToken = session.accessToken;
 
     const eventsResponse = await fetch(
@@ -91,7 +96,7 @@ export async function GET() {
 
     const userContributions: UserContributions = {
       username,
-      avatar_url: (session.user as any).avatar,
+      avatar_url: (session.user as SessionUser).avatar,
       total_contributions: totalContributions,
       repositories: repositories.slice(0, 10), 
     };

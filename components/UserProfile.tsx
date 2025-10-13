@@ -17,7 +17,6 @@ interface UserProfileProps {
 export default function UserProfile({
 	username,
 	avatar_url,
-	name,
 	os228Contributions = 0,
 }: UserProfileProps) {
 	return (
