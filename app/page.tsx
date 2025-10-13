@@ -1,24 +1,38 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
 import AnimatedProjectList from "../components/AnimatedProjectList";
 import Contributors from "../components/Contributors";
 import InfiniteScroll from "../components/InfiniteScroll";
 import Navbar from "../components/Navbar";
 import ProjectCardSkeleton from "../components/ProjectCardSkeleton";
 import ProjectFilters from "../components/ProjectFilters";
+import UserProfile from "../components/UserProfile";
 import { useProjects } from "../contexts/ProjectsContext";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { motion } from "framer-motion";
+import { UserContributions } from "@/types/contributions";
+import { Loader } from "lucide-react";
+
+interface SessionUser {
+	username?: string;
+	avatar?: string;
+	name?: string | null;
+	email?: string | null;
+}
 
 export default function Home() {
 	const [initialLoading, setInitialLoading] = useState(true);
+	const { data: session, status } = useSession();
+	const [contributions, setContributions] = useState<UserContributions | null>(null);
+	const [loadingContributions, setLoadingContributions] = useState(false);
+	
 	const {
 		searchQuery,
 		sortBy,
 		displayedProjects,
-		totalProjects,
 		isLoading,
 		isLoadingMore,
 		hasMore,
@@ -29,13 +43,33 @@ export default function Home() {
 		loadMoreProjects,
 	} = useProjects();
 
-	// Simulate initial loading screen
 	useEffect(() => {
 		const timer = setTimeout(() => {
 			setInitialLoading(false);
 		}, 1500);
 		return () => clearTimeout(timer);
 	}, []);
+
+	useEffect(() => {
+		if (status === "authenticated") {
+			fetchContributions();
+		}
+	}, [status]);
+
+	const fetchContributions = async () => {
+		try {
+			setLoadingContributions(true);
+			const response = await fetch("/api/contributions");
+			if (response.ok) {
+				const data = await response.json();
+				setContributions(data);
+			}
+		} catch (err) {
+			console.error("Erreur lors de la récupération des contributions:", err);
+		} finally {
+			setLoadingContributions(false);
+		}
+	};
 
 	const itemsPerPage = 6;
 
@@ -44,62 +78,84 @@ export default function Home() {
 			<Navbar />
 
 			<main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-				<motion.div
-					className="text-center mb-16"
-					initial={{ opacity: 0, y: -30 }}
-					whileInView={{ opacity: 1, y: 0 }}
-					viewport={{ once: true }}
-					transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-				>
-					<motion.h1
-						className="text-4xl md:text-5xl font-bold text-foreground mb-6"
-						initial={{ opacity: 0, scale: 0.9 }}
-						whileInView={{ opacity: 1, scale: 1 }}
-						viewport={{ once: true }}
-						transition={{ duration: 0.6, delay: 0.2 }}
-					>
-						OpenSource
-						<motion.span
-							className="text-red-500"
-							initial={{ opacity: 0, x: -10 }}
-							whileInView={{ opacity: 1, x: 0 }}
-							viewport={{ once: true }}
-							transition={{ duration: 0.4, delay: 0.4 }}
-						>
-							2
-						</motion.span>
-						<motion.span
-							className="text-primary"
-							initial={{ opacity: 0, x: -10 }}
-							whileInView={{ opacity: 1, x: 0 }}
-							viewport={{ once: true }}
-							transition={{ duration: 0.4, delay: 0.5 }}
-						>
-							2
-						</motion.span>
-						<motion.span
-							className="text-yellow-500"
-							initial={{ opacity: 0, x: -10 }}
-							whileInView={{ opacity: 1, x: 0 }}
-							viewport={{ once: true }}
-							transition={{ duration: 0.4, delay: 0.6 }}
-						>
-							8
-						</motion.span>
-					</motion.h1>
-
-					<motion.p
-						className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed"
-						initial={{ opacity: 0, y: 20 }}
+				{status === "authenticated" && session?.user ? (
+					<section className="mb-16">
+						{loadingContributions ? (
+							<div className="flex items-center justify-center py-12">
+								<Loader className="w-8 h-8 animate-spin text-primary" />
+							</div>
+						) : (
+							<UserProfile
+								username={(session.user as SessionUser)?.username || ""}
+								avatar_url={(session.user as SessionUser)?.avatar || ""}
+								name={session.user?.name}
+								email={session.user?.email}
+								os228Contributions={
+									contributions?.repositories.find(
+										(repo) => repo.repo.full_name === "Docteur-Parfait/os228"
+									)?.contributions || 0
+								}
+							/>
+						)}
+					</section>
+				) : (
+					<motion.div
+						className="text-center mb-16"
+						initial={{ opacity: 0, y: -30 }}
 						whileInView={{ opacity: 1, y: 0 }}
 						viewport={{ once: true }}
-						transition={{ duration: 0.6, delay: 0.4 }}
+						transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
 					>
-						Bienvenue sur la plateforme qui regroupe les projets open source du
-						Togo dans le cadre du Hacktoberfest 2025. Découvrez, contribuez et
-						participez à l&apos;écosystème technologique togolais.
-					</motion.p>
-				</motion.div>
+						<motion.h1
+							className="text-4xl md:text-5xl font-bold text-foreground mb-6"
+							initial={{ opacity: 0, scale: 0.9 }}
+							whileInView={{ opacity: 1, scale: 1 }}
+							viewport={{ once: true }}
+							transition={{ duration: 0.6, delay: 0.2 }}
+						>
+							OpenSource
+							<motion.span
+								className="text-red-500"
+								initial={{ opacity: 0, x: -10 }}
+								whileInView={{ opacity: 1, x: 0 }}
+								viewport={{ once: true }}
+								transition={{ duration: 0.4, delay: 0.4 }}
+							>
+								2
+							</motion.span>
+							<motion.span
+								className="text-primary"
+								initial={{ opacity: 0, x: -10 }}
+								whileInView={{ opacity: 1, x: 0 }}
+								viewport={{ once: true }}
+								transition={{ duration: 0.4, delay: 0.5 }}
+							>
+								2
+							</motion.span>
+							<motion.span
+								className="text-yellow-500"
+								initial={{ opacity: 0, x: -10 }}
+								whileInView={{ opacity: 1, x: 0 }}
+								viewport={{ once: true }}
+								transition={{ duration: 0.4, delay: 0.6 }}
+							>
+								8
+							</motion.span>
+						</motion.h1>
+
+						<motion.p
+							className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed"
+							initial={{ opacity: 0, y: 20 }}
+							whileInView={{ opacity: 1, y: 0 }}
+							viewport={{ once: true }}
+							transition={{ duration: 0.6, delay: 0.4 }}
+						>
+							Bienvenue sur la plateforme qui regroupe les projets open source du
+							Togo dans le cadre du Hacktoberfest 2025. Découvrez, contribuez et
+							participez à l&apos;écosystème technologique togolais.
+						</motion.p>
+					</motion.div>
+				)}
 
 				<section className="mb-16">
 					<motion.div

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "../contexts/ThemeContext";
 import { ProjectsProvider } from "../contexts/ProjectsContext";
+import SessionProvider from "../components/SessionProvider";
 import "./globals.css";
 import LayoutClientWrapper from "../components/LayoutClientWrapper";
 import BackToTopButton from "../components/BackToTopButton";
@@ -57,12 +58,14 @@ export default function RootLayout({
 			<body
 				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
 			>
-				<ThemeProvider>
-					<ProjectsProvider>
-						<LayoutClientWrapper>{children}</LayoutClientWrapper>
-						<BackToTopButton />
-					</ProjectsProvider>
-				</ThemeProvider>
+				<SessionProvider>
+					<ThemeProvider>
+						<ProjectsProvider>
+							<LayoutClientWrapper>{children}</LayoutClientWrapper>
+							<BackToTopButton />
+						</ProjectsProvider>
+					</ThemeProvider>
+				</SessionProvider>
 			</body>
 		</html>
 	);

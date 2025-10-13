@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 interface Contributor {
 	id: number;
@@ -98,10 +99,12 @@ export default function Contributors() {
 						}}
 						whileHover={{ scale: 1.1 }}
 					>
-						<img
+						<Image
 							src={contributor.avatar_url}
 							alt={contributor.login}
-							className="w-12 h-12 rounded-full border-2 border-border hover:border-primary transition-all duration-200"
+							width={48}
+							height={48}
+							className="rounded-full border-2 border-border hover:border-primary transition-all duration-200"
 						/>
 					</motion.a>
 				))}

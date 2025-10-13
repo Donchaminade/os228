@@ -17,6 +17,9 @@ OS228 (OpenSource 228) est une plateforme communautaire qui met en avant les pro
 - 🔄 **Facilité de contribution** : Ajout simple de nouveaux projets
 - 🌐 **Multilingue** : Interface en français
 - 📱 **Responsive** : Compatible mobile, tablette et desktop
+- 🔐 **Authentification GitHub** : Connectez-vous pour voir vos contributions
+- 📊 **Profil utilisateur** : Statistiques de contributions et repositories
+- 🎯 **Suivi des contributions** : Visualisez vos contributions récentes
 
 ## 🛠️ Technologies utilisées
 
@@ -24,6 +27,9 @@ OS228 (OpenSource 228) est une plateforme communautaire qui met en avant les pro
 - **TypeScript** - Typage statique
 - **Tailwind CSS** - Framework CSS
 - **React 19** - Bibliothèque UI
+- **NextAuth.js v5** - Authentification OAuth
+- **Framer Motion** - Animations
+- **GitHub API** - Statistiques de contributions
 
 ## 🚀 Installation et démarrage
 
@@ -68,6 +74,25 @@ OS228 (OpenSource 228) est une plateforme communautaire qui met en avant les pro
 4. **Ouvrir dans le navigateur**
 
    Ouvrez [http://localhost:3000](http://localhost:3000) dans votre navigateur.
+
+## 🔐 Configuration de l'authentification GitHub (Optionnel)
+
+Pour activer la fonctionnalité de profil et contributions :
+
+1. **Créez une GitHub OAuth App** : Suivez le guide détaillé dans [SETUP_GITHUB_AUTH.md](SETUP_GITHUB_AUTH.md)
+
+2. **Configurez les variables d'environnement** :
+   ```bash
+   # Créez un fichier .env.local à la racine
+   NEXTAUTH_URL=http://localhost:3000
+   NEXTAUTH_SECRET=votre-secret-aleatoire
+   GITHUB_CLIENT_ID=votre-client-id
+   GITHUB_CLIENT_SECRET=votre-client-secret
+   ```
+
+3. **Redémarrez le serveur** pour appliquer les changements
+
+Pour plus de détails, consultez la [documentation complète](SETUP_GITHUB_AUTH.md).
 
 ## 🤝 Comment contribuer
 
