@@ -375,20 +375,21 @@
     "language": "Typescript"
   },
   {
-  "id": 29,
-  "name": "HordricWeather",
-  "description": "Application météo moderne et élégante développée avec Flutter. HordricWeather vous accompagne au quotidien avec des prévisions précises, des alertes intelligentes, la qualité de l'air en temps réel et un widget personnalisable. Entièrement gratuite, sans publicité et respectueuse de votre vie privée. Fonctionnalités : prévisions GPS en temps réel, alertes météo extrêmes avec système anti-spam, qualité de l'air (AQI) avec conseils santé, widget Android élégant, conseils vestimentaires personnalisés, gestion multi-villes, interface moderne avec animations fluides, stockage 100% local, conforme RGPD.",
-  "link": "https://github.com/HordRicJr/HordricWeather",
-  "technologies": [
-    "Flutter",
-    "Dart",
-    "OpenWeather API"
-  ],
-  "category": "Mobile Application",
-  "author": "HordRicJr",
-  "language": "Dart"
-},
+    "id": 29,
+    "name": "HordricWeather",
+    "description": "Application météo moderne et élégante développée avec Flutter. HordricWeather vous accompagne au quotidien avec des prévisions précises, des alertes intelligentes, la qualité de l'air en temps réel et un widget personnalisable. Entièrement gratuite, sans publicité et respectueuse de votre vie privée. Fonctionnalités : prévisions GPS en temps réel, alertes météo extrêmes avec système anti-spam, qualité de l'air (AQI) avec conseils santé, widget Android élégant, conseils vestimentaires personnalisés, gestion multi-villes, interface moderne avec animations fluides, stockage 100% local, conforme RGPD.",
+    "link": "https://github.com/HordRicJr/HordricWeather",
+    "technologies": [
+      "Flutter",
+      "Dart",
+      "OpenWeather API"
+    ],
+    "category": "Mobile Application",
+    "author": "HordRicJr",
+    "language": "Dart"
+  },
   {
+
   "id": 30,
   "name": "flutter_db_migrator",
   "description": "Gestionnaire de migration SQLite pour Flutter — inspiré des migrations Laravel. Il offre une méthode simple et structurée pour gérer les modifications de schéma de base de données dans les applications Flutter avec sqflite. Les développeurs peuvent définir des migrations avec des méthodes up/down, gérer automatiquement le versioning et même générer de nouveaux fichiers de migration grâce à l'outil CLI intégré.",
@@ -424,7 +425,22 @@
   "category": "Mobile Application",
   "author": "HordRicJr",
   "language": "Dart"
- }
-
+ },
+  {
+    "id": 33,
+    "name": "CarHub",
+    "description": "CarHub est une application web moderne pour la gestion (achat, vente et la recherche) de véhicules. Elle permet aux utilisateurs de consulter la liste des véhicules, de commander, d'acheter ou de louer des véhicules.",
+    "link": "https://github.com/Singosirutonamikaze/car_react_app_project.git",
+    "technologies": [
+      "React",
+      "Tailwind CSS",
+      "Vite",
+      "TypeScript",
+      "MongoDB"
+    ],
+    "category": "Web Development",
+    "author": "SINGO Yao Dieu Donné",
+    "language": "JavaScript"
+  }
 ]
 
