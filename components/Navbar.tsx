@@ -1,13 +1,17 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useTheme } from "../contexts/ThemeContext";
 import { Button } from "./ui/button";
 import { Switch } from "./ui/switch";
 import { motion } from "framer-motion";
+import { useSession, signIn } from "next-auth/react";
+import { User, LogIn } from "lucide-react";
 
 export default function Navbar() {
 	const { theme, toggleTheme } = useTheme();
+	const { data: session, status } = useSession();
 
 	return (
 		<motion.nav
@@ -39,7 +43,29 @@ export default function Navbar() {
 					animate={{ opacity: 1, x: 0 }}
 					transition={{ duration: 0.5, delay: 0.3 }}
 				>
-					<Button asChild>
+					{status === "authenticated" && session?.user ? (
+						<Button
+							variant="outline"
+							className="border-primary/30 hover:border-primary/50 hover:bg-primary/10 transition-all"
+							onClick={() => {
+								window.scrollTo({ top: 0, behavior: 'smooth' });
+							}}
+						>
+							<User className="w-4 h-4 mr-2" />
+							<span className="hidden sm:inline">Mon Profil</span>
+						</Button>
+					) : (
+						<Button
+							onClick={() => signIn("github")}
+							variant="outline"
+							className="border-primary/30 hover:border-primary/50 hover:bg-primary/10 transition-all"
+						>
+							<LogIn className="w-4 h-4 mr-2" />
+							<span className="hidden sm:inline">Connexion</span>
+						</Button>
+					)}
+
+					<Button asChild className="hidden md:flex">
 						<a
 							href="https://github.com/Docteur-Parfait/os228"
 							target="_blank"
